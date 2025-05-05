@@ -50,7 +50,7 @@ const LoginForm = () => {
   // lastly define the actual form body!
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center justify-center space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-left justify-center space-y-4 w-60">
 
         {/* a single field */}
         <FormField
