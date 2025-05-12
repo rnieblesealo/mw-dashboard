@@ -18,7 +18,7 @@ export const Layout = () => {
     }
 
     redirectIfNotSignedIn()
-  })
+  }, [navigate])
 
   return (
     <div>
