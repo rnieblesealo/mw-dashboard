@@ -1,6 +1,7 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 import {
   Form,
@@ -19,17 +20,13 @@ import { supabase } from "../scripts/client"
 // define shape of form data
 const formSchema = z.object({
   email: z.string().email("Invalid email address!"),
-  // password with standard safety requirements
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .regex(/[a-z]/, "Must include a lowercase letter")
-    .regex(/[A-Z]/, "Must include an uppercase letter")
-    .regex(/[0-9]/, "Must include a number")
-    .regex(/[^A-Za-z0-9]/, "Must include a special character")
+  password: z.string()
 })
 
+
 export const LoginForm = () => {
+  const navigate = useNavigate();
+
   // define form
   // a form resolver bridges schema validation and the form itself
   // here we're creating a resolver from the schema
@@ -47,7 +44,7 @@ export const LoginForm = () => {
   // here we send the data to backend, etc.
   function onSubmit(values: z.infer<typeof formSchema>) {
     async function signIn() {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email: values.email,
         password: values.password
       })
@@ -57,8 +54,7 @@ export const LoginForm = () => {
           message: error.message
         });
       } else {
-        // auth success!
-        console.log(data)
+        navigate("/")
       }
     }
 
