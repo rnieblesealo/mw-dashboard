@@ -26,10 +26,13 @@ export const Home = () => {
   }, [])
 
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center space-y-8">
-      {shows &&
-        <ShowTable columns={columns} data={shows} />
-      }
+    <div className="w-screen h-screen flex items-center justify-center">
+      <div className="flex flex-col items-left justify-center space-y-8 w-3/4">
+        <span className="text-3xl font-bold">Shows</span>
+        {shows &&
+          <ShowTable columns={columns} data={shows} />
+        }
+      </div>
     </div>
   )
 }

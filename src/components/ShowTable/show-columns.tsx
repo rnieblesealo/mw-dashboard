@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
+import { Input } from '../ui/input';
 
 export const columns: ColumnDef<Show>[] = [
   {
@@ -79,21 +80,29 @@ export const columns: ColumnDef<Show>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
+            <Button variant="outline" className="h-8 w-8 p-0">
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
+
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(show.id.toString())}
             >
               Copy Show ID
             </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Input type="text" placeholder={show.venue?.toString()} />
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem
+              className="text-red-500"
+              onClick={() => { }}
+            >
+              Delete
+            </DropdownMenuItem>
+
           </DropdownMenuContent>
         </DropdownMenu>
       );
